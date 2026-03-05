@@ -29,10 +29,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
   margin: 0;
-  padding: 40px 0;
+  padding: 80px 0 40px;
   transition: background-color 0.3s, color 0.3s;
   box-sizing: border-box;
 }
@@ -44,7 +44,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 90%;
-  max-width: 500px;
+  max-width: 600px;
   margin-bottom: 30px;
 }
 
@@ -74,18 +74,23 @@ button {
   font-size: 18px;
   cursor: pointer;
   background-color: var(--button-bg);
-  color: var(--button-text);
+  color: var(--text-color); /* Adjusted for theme */
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
+#generate-btn {
+  color: var(--button-text);
+}
+
 #theme-toggle {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   padding: 8px 16px;
   font-size: 14px;
+  z-index: 1000;
 }
 
 /* Contact Form Styles */
@@ -128,4 +133,11 @@ button {
 .submit-btn {
   width: 100%;
   font-weight: bold;
+  color: var(--button-text);
+}
+
+/* Disqus Styles */
+.disqus-container {
+  text-align: left;
+  padding: 20px;
 }

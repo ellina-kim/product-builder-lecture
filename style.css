@@ -6,6 +6,8 @@
   --button-text: #ffffff;
   --lotto-number-bg: #4caf50;
   --lotto-number-text: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
 }
 
 [data-theme="dark"] {
@@ -16,6 +18,8 @@
   --button-text: #000000;
   --lotto-number-bg: #bb86fc;
   --lotto-number-text: #000000;
+  --input-bg: #2d2d2d;
+  --input-border: #444444;
 }
 
 body {
@@ -23,11 +27,14 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0;
+  padding: 40px 0;
   transition: background-color 0.3s, color 0.3s;
+  box-sizing: border-box;
 }
 
 .container {
@@ -36,12 +43,17 @@ body {
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  margin-bottom: 30px;
 }
 
 .lotto-numbers-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .lotto-number {
@@ -54,7 +66,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -75,4 +86,46 @@ button {
   right: 20px;
   padding: 8px 16px;
   font-size: 14px;
+}
+
+/* Contact Form Styles */
+.contact-container {
+  text-align: left;
+}
+
+.contact-container h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.submit-btn {
+  width: 100%;
+  font-weight: bold;
 }

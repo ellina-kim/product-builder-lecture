@@ -20,9 +20,14 @@
   <!-- Animal Type Test Section -->
   <div class="container animal-test-container">
     <h2>Animal Face Test</h2>
-    <p>Check if you look like a dog or a cat!</p>
-    <button type="button" id="start-webcam" onclick="initAnimalTest()">Start Test</button>
-    <div id="webcam-container"></div>
+    <p>Upload a photo to see if you look like a dog or a cat!</p>
+    <div class="upload-section">
+      <input type="file" id="image-upload" accept="image/*" onchange="handleFileUpload(event)">
+      <label for="image-upload" class="upload-label">Choose a Photo</label>
+    </div>
+    <div id="image-preview-container">
+      <img id="image-preview" src="#" alt="Your photo" style="display: none; max-width: 100%; border-radius: 10px; margin: 20px 0; border: 4px solid var(--button-bg);">
+    </div>
     <div id="label-container"></div>
   </div>
 
@@ -57,39 +62,41 @@
   <script defer type="text/javascript" src="/main.js"></script>
   <script type="text/javascript">
     const URL = "https://teachablemachine.withgoogle.com/models/oWNyuc5Sa/";
-    let model, webcam, labelContainer, maxPredictions;
+    let model, labelContainer, maxPredictions;
 
-    async function initAnimalTest() {
-        const startBtn = document.getElementById("start-webcam");
-        startBtn.style.display = "none";
-        
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
-
-        model = await tmImage.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
-
-        const flip = true;
-        webcam = new tmImage.Webcam(250, 250, flip);
-        await webcam.setup();
-        await webcam.play();
-        window.requestAnimationFrame(loop);
-
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
-        labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) {
-            labelContainer.appendChild(document.createElement("div"));
+    async function loadModel() {
+        if (!model) {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+            
+            labelContainer = document.getElementById("label-container");
+            labelContainer.innerHTML = '';
+            for (let i = 0; i < maxPredictions; i++) {
+                labelContainer.appendChild(document.createElement("div"));
+            }
         }
     }
 
-    async function loop() {
-        webcam.update();
-        await predict();
-        window.requestAnimationFrame(loop);
+    async function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const imgElement = document.getElementById("image-preview");
+            imgElement.src = e.target.result;
+            imgElement.style.display = "block";
+            
+            await loadModel();
+            await predict(imgElement);
+        };
+        reader.readAsDataURL(file);
     }
 
-    async function predict() {
-        const prediction = await model.predict(webcam.canvas);
+    async function predict(imgElement) {
+        const prediction = await model.predict(imgElement);
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";

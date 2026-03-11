@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lotto & Animal Type Test</title>
+  <title>Lotto Generator & Animal Face AI Test | Fun Tools</title>
+  <meta name="description" content="Generate lucky lotto numbers and find your animal look-alike with our AI-powered face test. Free, fun, and easy to use!">
   <link href='/style.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -12,55 +13,95 @@
   <meta name="google-adsense-account" content="ca-pub-6340961847531449">
 </head>
 <body>
-  <button id="theme-toggle">Dark Mode</button>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">FunTools AI</a>
+      <ul class="nav-menu">
+        <li><a href="#lotto-section">Lotto</a></li>
+        <li><a href="#animal-section">Animal Test</a></li>
+        <li><a href="#about-section">About</a></li>
+        <li><a href="#privacy-section">Privacy</a></li>
+      </ul>
+      <button id="theme-toggle">Dark Mode</button>
+    </div>
+  </nav>
   
-  <div class="container">
-    <h1>Lotto Number Generator</h1>
-    <div id="lotto-numbers" class="lotto-numbers-container"></div>
-    <button id="generate-btn">Generate Numbers</button>
-  </div>
+  <header class="hero-section">
+    <h1>Discover Your Luck & Animal Look-Alike</h1>
+    <p>Using advanced AI and random algorithms to bring fun to your day.</p>
+  </header>
 
-  <!-- Animal Type Test Section -->
-  <div class="container animal-test-container">
-    <h2>Animal Face Test</h2>
-    <p>Upload a photo to see if you look like a dog or a cat!</p>
-    <div class="upload-section">
-      <input type="file" id="image-upload" accept="image/*" onchange="handleFileUpload(event)">
-      <label for="image-upload" class="upload-label">Choose a Photo</label>
-    </div>
-    <div id="image-preview-container">
-      <img id="image-preview" src="#" alt="Your photo" style="display: none; max-width: 100%; border-radius: 10px; margin: 20px 0; border: 4px solid var(--button-bg);">
-    </div>
-    <div id="label-container"></div>
-  </div>
+  <main>
+    <section id="lotto-section" class="container">
+      <h2>Lotto Number Generator</h2>
+      <p class="section-desc">Need some inspiration for your next lottery ticket? Our generator uses a cryptographically secure random algorithm to provide you with a unique set of numbers. Try your luck today!</p>
+      <div id="lotto-numbers" class="lotto-numbers-container"></div>
+      <button id="generate-btn">Generate Lucky Numbers</button>
+    </section>
 
-  <div class="container contact-container">
-    <h2>Partnership Inquiry</h2>
-    <form action="https://formspree.io/f/xeerjrwd" method="POST">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="your@email.com">
+    <!-- Animal Type Test Section -->
+    <section id="animal-section" class="container animal-test-container">
+      <h2>AI Animal Face Test</h2>
+      <p class="section-desc">Our AI model, trained on thousands of images, analyzes your facial features to determine which animal you resemble the most. Are you a charismatic cat or a friendly dog? Upload a photo to find out!</p>
+      <div class="upload-section">
+        <input type="file" id="image-upload" accept="image/*" onchange="handleFileUpload(event)">
+        <label for="image-upload" class="upload-label">Choose a Photo</label>
       </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required placeholder="Your partnership inquiry..."></textarea>
+      <div id="image-preview-container">
+        <img id="image-preview" src="#" alt="Your photo" style="display: none; max-width: 100%; border-radius: 10px; margin: 20px 0; border: 4px solid var(--button-bg);">
       </div>
-      <button type="submit" class="submit-btn">Send Inquiry</button>
-    </form>
-  </div>
+      <div id="label-container"></div>
+    </section>
 
-  <div class="container disqus-container">
-    <div id="disqus_thread"></div>
-    <script>
-        (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://publicbuilder.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <section id="about-section" class="container info-container">
+      <h2>About FunTools AI</h2>
+      <p>FunTools AI is dedicated to providing simple, web-based entertainment tools using the latest web technologies. Our Lotto Generator aims to provide fair randomness, while our Animal Face Test utilizes Google's Teachable Machine technology to offer a fun AI experience right in your browser.</p>
+    </section>
+
+    <section class="container contact-container">
+      <h2>Partnership Inquiry</h2>
+      <p class="section-desc">For business inquiries or feedback, please reach out to us using the form below.</p>
+      <form action="https://formspree.io/f/xeerjrwd" method="POST">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Your partnership inquiry..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Inquiry</button>
+      </form>
+    </section>
+
+    <section id="privacy-section" class="container privacy-container">
+      <h2>Privacy Policy</h2>
+      <p>Your privacy is important to us. Here is how we handle your data:</p>
+      <ul>
+        <li><strong>Photos:</strong> All image processing for the Animal Face Test happens locally in your browser. We do NOT upload or store your photos on our servers.</li>
+        <li><strong>Cookies:</strong> We use Google AdSense which may use cookies to serve ads based on your prior visits to this or other websites.</li>
+        <li><strong>Third Parties:</strong> We use Disqus for comments and Formspree for contact forms. Please refer to their respective privacy policies for more details.</li>
+      </ul>
+    </section>
+
+    <section class="container disqus-container">
+      <h3>Community Comments</h3>
+      <div id="disqus_thread"></div>
+      <script>
+          (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://publicbuilder.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2026 FunTools AI. All rights reserved.</p>
+  </footer>
 
   <script defer type="text/javascript" src="/main.js"></script>
   <script type="text/javascript">
